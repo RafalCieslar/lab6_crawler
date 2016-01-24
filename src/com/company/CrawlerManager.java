@@ -97,7 +97,6 @@ public class CrawlerManager {
             crawlers.add(new Crawler());
             crawlers.get(i).setProperties(properties);
         }
-
     }
 
     public int getCurrentDeph() {
