@@ -68,14 +68,18 @@ public class CrawlerManager {
                 }
                 for(String j : crawlers.get(i).getCrawledUrls()) {
                        nextUrlBase.add(j);
-                       if(!gdzieZnaleziono.contains(j)) gdzieZnaleziono.add(j);
+                       if(!gdzieZnaleziono.contains(j))
+                       {
+                           gdzieZnaleziono.add(j);
+                           System.out.println(j);
+                       }
                 }
                 crawlers.set(i,new Crawler(properties));
             }
         }
         //aktualna baza jest pusta wiec czas zejsc glebiej
         FileManager fileManager = new FileManager();
-        fileManager.saveLinksToFile(nextUrlBase);
+        fileManager.saveLinksToFile(gdzieZnaleziono);
         nextUrlBase = new HashSet<>();
         this.currentDeph --;
         System.out.println(currentDeph);

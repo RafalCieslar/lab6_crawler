@@ -16,9 +16,9 @@ public class Main {
             crawlerManager.crawl();
         }
 
-        for(String s: crawlerManager.getGdzieZnaleziono())
-        {
-            System.out.println(s);
-        }
+//        for(String s: crawlerManager.getGdzieZnaleziono())
+//        {
+//            System.out.println(s);
+//        }
     }
 }

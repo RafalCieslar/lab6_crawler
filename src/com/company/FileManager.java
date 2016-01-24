@@ -39,11 +39,7 @@ public class FileManager {
         PrintWriter print = null;
         try {
             print = new PrintWriter("baseUrls.txt");
-            linksArray =getLinksFromFile();
-            for (String s: newUrlsBase)
-            {
-                print.println(s);
-            }
+
             for (String s: newUrlsBase)
             {
                 print.println(s);
