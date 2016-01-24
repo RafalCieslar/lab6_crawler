@@ -1,0 +1,74 @@
+package com.company;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashSet;
+
+/**
+ * Created by 3p0 on 2016-01-23.
+ */
+public class Parser {
+
+
+
+    private Properties properties;
+    private HashSet<String> linksHS = new HashSet<>();
+
+    public void getStartingLinksList()
+    {
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(properties.getBasicUrl()).get();
+            Elements links = doc.select("a");
+            for (Element e : links)
+            {
+                String [] baseLink = e.attr("abs:href").split("/");
+                String [] baseLink2 = baseLink[2].split("#");
+                String toHS = baseLink[0] + "//" + baseLink2[0];
+                linksHS.add(toHS);
+            }
+            //zapis znalezionych linkow
+            PrintWriter print = new PrintWriter("baseUrls.txt");
+            print.println(properties.getBasicUrl());
+            for (String s: linksHS)
+            {
+                print.println(s);
+            }
+            print.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public boolean findWord(String zrodlo,String wzorzec)
+    {
+        zrodlo.replace(":","");
+        String [] splittedZrodlo = zrodlo.split(" ");
+
+        for(String s :splittedZrodlo)
+        {
+            if (s.equals(wzorzec))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+    Parser()
+    {
+
+    }
+}

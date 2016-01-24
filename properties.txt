@@ -1,0 +1,3 @@
+startAt http://www.onet.pl
+szukanyWyraz tak
+crawlDeep 10
